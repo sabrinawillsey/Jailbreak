@@ -52,6 +52,6 @@ public class JailBreakEnvironment extends Environment {
     @Override
     public void paintEnvironment(Graphics graphics) {
 //        Font font = new Font("Tahoma", Font.BOLD, 28);
-        this.grid.paintComponent(graphics);
+//        this.grid.paintComponent(graphics);
     }
 }
