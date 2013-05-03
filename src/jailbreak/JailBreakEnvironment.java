@@ -15,7 +15,7 @@ import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.WindowConstants;
 
-public class JailBreakEnvironment extends Environment {
+public class JailBreakEnvironment extends Environment implements ConfigurationHandler {
 
     private int backgroundSpeed = 0;
     private Prisoner prisoner;
@@ -125,9 +125,16 @@ public class JailBreakEnvironment extends Environment {
         menu.setTitle("Game Configuration");
         
         ConfigurationMenu cm = new ConfigurationMenu();
+        cm.setConfigurationHandler(this);
+        
         menu.add(cm);
-        menu.setSize(new Dimension(270, 250));
+        menu.setSize(new Dimension(270, 275));
         menu.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         menu.setVisible(true);
+    }
+
+    @Override
+    public void handleConfiguration(ConfigurationData data) {
+        System.out.println(data.getName());
     }
 }

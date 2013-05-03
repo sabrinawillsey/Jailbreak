@@ -16,6 +16,23 @@ public class ConfigurationMenu extends javax.swing.JPanel {
     public ConfigurationMenu() {
         initComponents();
     }
+    //<editor-fold defaultstate="collapsed" desc="comment">
+    private ConfigurationHandler configurationHandler;
+
+    /**
+     * @return the configurationHandler
+     */
+    public ConfigurationHandler getConfigurationHandler() {
+        return configurationHandler;
+    }
+
+    /**
+     * @param configurationHandler the configurationHandler to set
+     */
+    public void setConfigurationHandler(ConfigurationHandler configurationHandler) {
+        this.configurationHandler = configurationHandler;
+    }
+    //</editor-fold>
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -32,6 +49,8 @@ public class ConfigurationMenu extends javax.swing.JPanel {
         jRadioButton2 = new javax.swing.JRadioButton();
         jRadioButton3 = new javax.swing.JRadioButton();
         jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jtxtName = new javax.swing.JTextField();
         jpnlButtons = new javax.swing.JPanel();
         jbtnOK = new javax.swing.JButton();
 
@@ -45,27 +64,36 @@ public class ConfigurationMenu extends javax.swing.JPanel {
 
         jLabel1.setText("Difficulty");
 
+        jLabel2.setText("Player Name");
+
         javax.swing.GroupLayout jpnlConfigurationLayout = new javax.swing.GroupLayout(jpnlConfiguration);
         jpnlConfiguration.setLayout(jpnlConfigurationLayout);
         jpnlConfigurationLayout.setHorizontalGroup(
             jpnlConfigurationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jpnlConfigurationLayout.createSequentialGroup()
+                .addGap(27, 27, 27)
                 .addGroup(jpnlConfigurationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jpnlConfigurationLayout.createSequentialGroup()
-                        .addGap(34, 34, 34)
+                        .addComponent(jLabel2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jtxtName, javax.swing.GroupLayout.DEFAULT_SIZE, 168, Short.MAX_VALUE))
+                    .addGroup(jpnlConfigurationLayout.createSequentialGroup()
+                        .addGap(11, 11, 11)
                         .addGroup(jpnlConfigurationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jRadioButton3)
                             .addComponent(jRadioButton2)
                             .addComponent(jRadioButton1)))
-                    .addGroup(jpnlConfigurationLayout.createSequentialGroup()
-                        .addGap(23, 23, 23)
-                        .addComponent(jLabel1)))
-                .addContainerGap(114, Short.MAX_VALUE))
+                    .addComponent(jLabel1))
+                .addContainerGap())
         );
         jpnlConfigurationLayout.setVerticalGroup(
             jpnlConfigurationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jpnlConfigurationLayout.createSequentialGroup()
-                .addGap(22, 22, 22)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpnlConfigurationLayout.createSequentialGroup()
+                .addContainerGap(31, Short.MAX_VALUE)
+                .addGroup(jpnlConfigurationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(jtxtName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jRadioButton1)
@@ -73,7 +101,7 @@ public class ConfigurationMenu extends javax.swing.JPanel {
                 .addComponent(jRadioButton2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jRadioButton3)
-                .addContainerGap(68, Short.MAX_VALUE))
+                .addGap(28, 28, 28))
         );
 
         jbtnOK.setText("OK");
@@ -117,11 +145,19 @@ public class ConfigurationMenu extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jbtnOKActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnOKActionPerformed
+        if (configurationHandler != null) {
+            ConfigurationData data = new ConfigurationData();
+
+            data.setName(jtxtName.getText());
+            data.setDifficulty(Difficulty.EASY);
+
+            configurationHandler.handleConfiguration(data);
+        }
         this.getTopLevelAncestor().setVisible(false);        // TODO add your handling code here:
     }//GEN-LAST:event_jbtnOKActionPerformed
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JRadioButton jRadioButton1;
     private javax.swing.JRadioButton jRadioButton2;
     private javax.swing.JRadioButton jRadioButton3;
@@ -129,5 +165,6 @@ public class ConfigurationMenu extends javax.swing.JPanel {
     private javax.swing.JButton jbtnOK;
     private javax.swing.JPanel jpnlButtons;
     private javax.swing.JPanel jpnlConfiguration;
+    private javax.swing.JTextField jtxtName;
     // End of variables declaration//GEN-END:variables
 }
