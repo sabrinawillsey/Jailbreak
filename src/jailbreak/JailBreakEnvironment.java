@@ -1,20 +1,19 @@
 package jailbreak;
 
 import JailBreak.Prisoner;
-import environment.Direction;
 import environment.Environment;
-import environment.GraphicsPalette;
-import environment.Grid;
 import environment.Velocity;
 import image.ResourceTools;
-import java.awt.Color;
-import java.awt.Font;
+import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.Point;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
+import javax.swing.JDialog;
+import javax.swing.JFrame;
+import javax.swing.WindowConstants;
 
 public class JailBreakEnvironment extends Environment {
 
@@ -87,6 +86,11 @@ public class JailBreakEnvironment extends Environment {
             this.jumpStartTimeMillis = System.currentTimeMillis();
             this.prisoner.getVelocity().y = -30;
         }
+        
+        if ((ke.isControlDown()) && (ke.getKeyCode() == ke.VK_M)) {
+            System.out.println("Menu");
+            displayMenu();
+        }
     }
 
     @Override
@@ -113,5 +117,17 @@ public class JailBreakEnvironment extends Environment {
     public void paintEnvironment(Graphics graphics) {
 //        Font font = new Font("Tahoma", Font.BOLD, 28);
 //        this.grid.paintComponent(graphics);
+    }
+
+    private void displayMenu() {
+        JDialog menu = new JDialog();
+        menu.setModal(true);
+        menu.setTitle("Game Configuration");
+        
+        ConfigurationMenu cm = new ConfigurationMenu();
+        menu.add(cm);
+        menu.setSize(new Dimension(270, 250));
+        menu.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        menu.setVisible(true);
     }
 }
